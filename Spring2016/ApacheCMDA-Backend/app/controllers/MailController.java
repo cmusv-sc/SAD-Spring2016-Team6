@@ -75,8 +75,8 @@ public class MailController extends Controller {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        Mail mail = new Mail(fromUserMail, toUserMail, mailTitle, mailContent, mailDate);
+        Mail mail = new Mail.MailBuilder(fromUserMail,toUserMail).mailTitle(mailTitle).mailContent(mailContent).mailDate(mailDate);
+       // Mail mail = new Mail(fromUserMail, toUserMail, mailTitle, mailContent, mailDate);
         mailRepository.save(mail);
         return created(new Gson().toJson("success"));
     }

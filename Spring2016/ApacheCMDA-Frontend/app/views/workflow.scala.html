@@ -7,6 +7,7 @@
         <link href='@routes.Assets.at("css/bootstrap.min.css")' rel="stylesheet"/>
         <link href='@routes.Assets.at("css/header.css")' rel="stylesheet"/>
         <script src='@routes.Assets.at("js/jquery-1.1.js")'></script>
+        <script src='@routes.Assets.at("js/workflow.js")'></script>
     </head>
     <body>
         <div id="header">
@@ -18,7 +19,7 @@
             <hr>
             <div class="row">
                 <div class="col-md-8">
-                    <form class="form-horizontal" action="@routes.WorkflowController.createFlow()" enctype="multipart/form-data" method="POST">
+                    <form class="form-horizontal" action="@routes.WorkflowController.createFlow()" enctype="multipart/form-data" method="POST" onsubmit="return toVaild()" id="form1">
                         <input type="hidden" name="userID" value="@userId">
                         <div class="form-group">
                             <label for="in-Title" class="col-sm-2 control-label">Title</label>

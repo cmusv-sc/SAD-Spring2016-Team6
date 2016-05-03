@@ -45,7 +45,14 @@ public class Mail {
 		this.mailDate = mailDate;
 		this.readStatus = false;
 	}
-
+	public Mail(MailBuilder builder) {
+		this.fromUserMail = builder.fromUserMail;
+		this.toUserMail = builder.toUserMail;
+		this.mailTitle = builder.mailTitle;
+		this.mailContent = builder.mailContent;
+		this.mailDate = builder.mailDate;
+		this.readStatus = builder.readStatus;
+	}
     public long getId() {return id;}
 
 	public String getFromUserMail() {
@@ -98,6 +105,35 @@ public class Mail {
 	public String toString() {
 		return "Mail [id=" + id + ", fromUserMail=" + fromUserMail + ", toUserMail=" + toUserMail + ", mailTitle=" + mailTitle
 				+ ", mailContent=" + mailContent + ", mailDate=" + mailDate +"]";
+	}
+		public static class MailBuilder{
+	    private final String fromUserMail;
+		private final String toUserMail;
+		private String mailTitle;
+		private String mailContent;
+		private Date mailDate;
+		private boolean readStatus;
+
+		public MailBuilder(String fromUserMail, String toUserMail) {
+			this.fromUserMail = fromUserMail;
+			this.toUserMail = toUserMail;
+			this.readStatus = false;
+		}
+		public MailBuilder mailTitle(String mailTitle) {
+			this.mailTitle = mailTitle;
+			return this;
+		}
+		public MailBuilder mailContent(String mailContent) {
+			this.mailContent = mailContent;
+			return this;
+		}
+		public MailBuilder mailDate(String mailDate) {
+			this.mailDate = mailDate;
+			return this;
+		}
+		public Mail build() {
+			return new Mail(this);
+		}
 	}
 }
 
